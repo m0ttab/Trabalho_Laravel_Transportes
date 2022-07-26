@@ -25,6 +25,8 @@ drop table if exists turmas;
 create table turmas (
     id int not null auto_increment,
     nome varchar(80) not null,
-    curso_id varchar(100) not null,
+    curso_id int not null,
     primary key (id)
 );
+
+ALTER TABLE turmas ADD CONSTRAINT fk_curTurmas FOREIGN KEY (curso_id) REFERENCES cursos (id)
