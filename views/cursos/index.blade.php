@@ -1,15 +1,35 @@
-@if(count($cursos)==0)
-    Nenhum curso cadastrado!
-@else
-<ul>
-    @foreach($cursos as $curso)
-        <li>
-            {{$curso->nome}}&nbsp;{{$curso->nome_reduzido}}
-            <button><a href="/cursos/{{$curso->id}}/edit">Editar</a></button>
-            <button><a href="/cursos/{{$curso->id}}/destroy">Remover</a></button>
-        </li>
-    @endforeach
-    </ul>
-@endif
-<br>
-<button><a href="/cursos/create">Novo curso</a></button>
+@extends("base.index", ['title' => 'Cursos'])
+
+@section("container")
+
+    <h1>Cursos</h1>
+
+    @if(count($cursos)==0)
+        <p>Nenhum curso cadastrado!</p>
+    @else
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Nome Reduzido</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($cursos as $curso)
+            <tr>
+                <td>{{$curso->id}}</td>
+                <td>{{$curso->nome}}</td>
+                <td>{{$curso->nome_reduzido}}</td>
+                <td><a class="btn btn-warning" href="/cursos/{{$curso->id}}/edit">Editar</a></td>
+                <td><a class="btn btn-danger" href="/cursos/{{$curso->id}}/destroy">Remover</a></td>
+            </tr>
+            
+        @endforeach
+        </tbody>
+    </table>
+    @endif
+    <a class="btn btn-primary" href="/cursos/create">Novo curso</a>
+
+@endsection
