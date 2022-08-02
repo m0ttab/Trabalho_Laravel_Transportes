@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\PeriodosController;
 use App\Http\Controllers\TurmasController;
+use App\Http\Controllers\RespostasController;
 
 
 /*
@@ -16,6 +17,28 @@ use App\Http\Controllers\TurmasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/api/cursos', function(){
+
+    $respostas = DB::select('select * from cursos');
+
+    echo json_encode($respostas);
+
+});
+Route::get('/api/turmas', function(){
+
+    $respostas = DB::select('select * from turmas');
+
+    echo json_encode($respostas);
+
+});
+Route::get('/api/periodos', function(){
+
+    $respostas = DB::select('select * from periodos');
+
+    echo json_encode($respostas);
+
+});
 
 Route::get('/cursos', [CursosController::class, 'index']);
 Route::get('/cursos/create', [CursosController::class, 'create']);
@@ -37,3 +60,7 @@ Route::post('/turmas/store', [TurmasController::class, 'store']);
 Route::get('/turmas/{id}/edit', [TurmasController::class, 'edit']);
 Route::post('/turmas/update', [TurmasController::class, 'update']);
 Route::get('/turmas/{id}/destroy', [TurmasController::class, 'destroy']);
+
+Route::get('/respostas', [RespostasController::class, 'index']);
+Route::get('/respostas/create', [RespostasController::class, 'create']);
+Route::post('/respostas/store', [RespostasController::class, 'store']);
