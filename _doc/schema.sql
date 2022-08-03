@@ -6,7 +6,8 @@ create table cursos (
     id int not null auto_increment,
     nome varchar(200) not null,
     nome_reduzido varchar(100) not null,
-    primary key (id)
+
+    primary key(id)
 );
 
 drop table if exists periodos;
@@ -17,7 +18,7 @@ create table periodos (
     dt_inicio date not null,
     dt_fim date not null,
 
-    primary key (id)
+    primary key(id)
 );
 
 drop table if exists turmas;
@@ -26,7 +27,9 @@ create table turmas (
     id int not null auto_increment,
     nome varchar(80) not null,
     curso_id int not null,
-    primary key (id)
+
+    primary key(id),
+    foreign key(curso_id) references cursos(id)
 );
 
 drop table if exists respostas;
@@ -45,6 +48,9 @@ create table respostas (
     transporte varchar(200) not null,
     poder_publico_responsavel varchar(200) not null,
     diferenca_paga int,
-    primary key(id)
+
+    primary key(id),
+    foreign key(periodo_id) references periodos(id),
+    foreign key(turma_id) references turmas(id)
     
 );
