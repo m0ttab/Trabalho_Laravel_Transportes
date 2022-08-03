@@ -19,10 +19,30 @@ class RespostasController extends Controller
 
         $periodos = DB::select('select * from periodos');
 
+        $periodo_id = null;
+
+        foreach($periodos as $periodo){
+
+            if($periodo->ano == date('Y')){
+
+                $ini = strtotime($periodo->dt_inicio);
+                $fim = strtotime($periodo->dt_fim);
+                $agora = strtotime(date('Y-m-d'));
+
+                if($agora >= $ini && $agora <= $fim){
+      
+                    $periodo_id = $periodo->id;
+                    
+                }
+            
+            }
+        
+        }
+
         return view('respostas.create', [
-            'periodos' => $periodos,
-            'bool' => false
+            'periodo_id' => $periodo_id
         ]);
+
     }
 
     function store(Request $request){

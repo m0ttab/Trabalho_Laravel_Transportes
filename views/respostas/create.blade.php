@@ -2,34 +2,17 @@
 
 @section("container")
 
-@if(count($periodos)>0)
+<h1>Cadastro de Respostas</h1>
 
-  @foreach($periodos as $periodo)
-
-    @if($periodo->ano == date('Y'))
-
-      <?php
-        $p_id = $periodo->id;
-        $bool = true;
-      ?>
-
-    @endif
-
-  @endforeach
-
-@endif
-
-@if(!$bool)
+@if($periodo_id == null)
 
 <p>Você está fora do período de inscrições!</p>
 
 @else
 
-<h1>Cadastro de Respostas</h1>
-
 <form id="form" method="post" action="/respostas/store">
   <input type="hidden" name="_token" value="{{csrf_token()}}">
-  <input type="hidden" name="periodo_id" value="<?php echo $p_id; ?>">
+  <input type="hidden" name="periodo_id" value="{{$periodo_id}}">
   <div class="form-group">
     <input class="form-control" type="text" name="nome_aluno" placeholder="Informe seu nome">
   </div>

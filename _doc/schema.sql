@@ -1,3 +1,5 @@
+create database transportes;
+
 use transportes;
  
 drop table if exists cursos;
