@@ -10,7 +10,7 @@
 
 @else
 
-<form id="form" method="post" action="/respostas/store">
+<form id="form">
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <input type="hidden" name="periodo_id" value="{{$periodo_id}}">
   <div class="form-group">
@@ -36,7 +36,7 @@
     </select>
   </div>
   <div class="form-group">
-    <input type="hidden" name="cidade_id">
+    <input type="hidden" id="cidades_id" name="cidade_id">
     <select class="form-control" id="cidades" name="cidade">
         <option value="">Selecione sua cidade</option>
     </select>
@@ -148,9 +148,23 @@
             
             opt = document.createElement('option');
             opt.innerHTML = cidade.nome;
-            opt.setAttribute('value', cidade.id);
+            opt.setAttribute('value', cidade.nome);
 
             document.getElementById('cidades').appendChild(opt);
+
+        }
+
+        document.getElementById('cidades').onchange = function() {
+
+            for(const cidade of res){
+
+              if(cidade.nome == this.value){
+
+                document.getElementById('cidades_id').value = cidade.id;
+
+              }
+
+            }
 
         }
 
@@ -171,7 +185,17 @@
 
         }
 
-        document.getElementById('estados').onchange = () => {
+        document.getElementById('estados').onchange = function() {
+
+            for(const estado of res){
+
+              if(estado.sigla == this.value){
+
+                document.getElementById('estados_id').value = estado.id;
+
+              }
+
+            }
 
             getCidades();
 
@@ -204,19 +228,23 @@
 
         var form_data = new FormData(document.getElementById('form'));
         
-        fetch('./store', {
+        fetch('/respostas/store', {
           
           method: 'POST',
           body: form_data
           
         }).then((req) => {
           
-          req.json().then((data) => {
+          if(req.status == 200){
 
-            alert('Formulário enviado!');
-            console.log(data);
-            
-          });
+              alert('Formulário enviado!');
+              document.getElementById('form').reset();
+
+          }else{
+
+              alert('Erro no cadastro!');
+
+          }
           
         });
 
