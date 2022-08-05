@@ -24,7 +24,11 @@ class TurmasController extends Controller
 
         unset($data['_token']);
 
-        DB::insert("INSERT INTO turmas(nome, curso_id) VALUES (:nome, :curso_id)", $data);
+        if(!empty($data['nome']) && !empty($data['curso_id'])){
+
+            DB::insert("INSERT INTO turmas(nome, curso_id) VALUES (:nome, :curso_id)", $data);
+
+        }
 
         //return redirect('/turmas');
 
@@ -42,7 +46,11 @@ class TurmasController extends Controller
         
         unset($data['_token']);
 
-        DB::update("UPDATE turmas SET nome = :nome, curso_id = :curso_id WHERE id = :id", $data);
+        if(!empty($data['nome']) && !empty($data['curso_id'])){
+
+            DB::update("UPDATE turmas SET nome = :nome, curso_id = :curso_id WHERE id = :id", $data);
+
+        }
 
         //return redirect('/turmas');
     }

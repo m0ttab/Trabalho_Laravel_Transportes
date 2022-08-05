@@ -50,11 +50,24 @@ class RespostasController extends Controller
 
         unset($data['_token']);
 
-        DB::insert("INSERT INTO respostas(periodo_id, turma_id, uf_id, nome_aluno, cpf, cidade, cidade_id, uf, transporte, poder_publico_responsavel, diferenca_paga)
-                    VALUES (:periodo_id, :turma_id, :uf_id, :nome_aluno, :cpf, :cidade, :cidade_id, :uf, :transporte, :poder_publico_responsavel, :diferenca_paga)",
-        $data);
+        if(empty($data['diferenca_paga']) || $data['diferenca_paga'] == ' '){
 
-        return redirect('/respostas');
+            $data['diferenca_paga'] = '-';
+
+        }
+
+        if(!empty($data['periodo_id']) && !empty($data['nome_aluno']) && !empty($data['turma_id'])
+            && !empty($data['cpf']) && !empty($data['uf_id']) && !empty($data['uf'])
+            && !empty($data['cidade_id']) && !empty($data['cidade']) && !empty($data['transporte'])
+            && !empty($data['poder_publico_responsavel'])){
+
+            DB::insert("INSERT INTO respostas(periodo_id, nome_aluno, turma_id, cpf, uf_id, uf, cidade_id, cidade, transporte, poder_publico_responsavel, diferenca_paga)
+                        VALUES (:periodo_id, :nome_aluno, :turma_id, :cpf, :uf_id, :uf, :cidade_id, :cidade, :transporte, :poder_publico_responsavel, :diferenca_paga)",
+                        $data);
+
+        }
+
+        //return redirect('/respostas');
         
     }
     

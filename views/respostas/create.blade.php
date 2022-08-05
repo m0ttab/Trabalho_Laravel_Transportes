@@ -44,9 +44,9 @@
   <div class="form-group">
     <select class="form-control" id="transporte" name="transporte">
         <option value="">Selecione seu transporte</option>
-        <option value="1">Ônibus</option>
-        <option value="2">Micro-ônibus</option>
-        <option value="3">Van</option>
+        <option value="Ônibus">Ônibus</option>
+        <option value="Micro-ônibus">Micro-ônibus</option>
+        <option value="Van">Van</option>
     </select>
   </div>
   <p>Poder público responsável:</p>

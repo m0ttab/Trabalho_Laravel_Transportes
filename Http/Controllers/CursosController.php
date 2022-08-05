@@ -20,18 +20,27 @@ class CursosController extends Controller
     }
 
     function store(Request $request){
+
         $data = $request->all();
         
         unset($data['_token']);
-        DB::insert("INSERT INTO cursos(nome, nome_reduzido) VALUES (:nome, :nome_reduzido);", $data);
+
+        if(!empty($data['nome']) && !empty($data['nome'])){
+
+            DB::insert("INSERT INTO cursos(nome, nome_reduzido) VALUES (:nome, :nome_reduzido);", $data);
+
+        }
 
         //return redirect('/cursos');
+
     }
 
     function edit($id){
+        
         $cursos = DB::select("SELECT * FROM cursos WHERE id = ?", [$id]);
 
         return view('cursos.edit', ['curso' => $cursos[0]]);
+
     }
 
     function update(Request $request){
@@ -40,7 +49,11 @@ class CursosController extends Controller
         
         unset($data['_token']);
 
-        DB::update("UPDATE cursos SET nome = :nome, nome_reduzido = :nome_reduzido WHERE id = :id", $data);
+        if(!empty($data['nome']) && !empty($data['nome'])){
+
+            DB::update("UPDATE cursos SET nome = :nome, nome_reduzido = :nome_reduzido WHERE id = :id", $data);
+        
+        }
 
         //return redirect('/cursos');
     }

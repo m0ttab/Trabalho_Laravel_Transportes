@@ -24,7 +24,12 @@ class PeriodosController extends Controller
         $data = $request->all();
 
         unset($data['_token']);
-        DB::insert("INSERT INTO periodos(ano, dt_inicio, dt_fim) VALUES (:ano, :dt_inicio, :dt_fim);", $data);
+
+        if(!empty($data['ano']) && !empty($data['dt_inicio']) && !empty($data['dt_fim'])){
+
+            DB::insert("INSERT INTO periodos(ano, dt_inicio, dt_fim) VALUES (:ano, :dt_inicio, :dt_fim);", $data);
+
+        }
 
         //return redirect('/periodos');
     }
@@ -41,8 +46,12 @@ class PeriodosController extends Controller
         
         unset($data['_token']);
 
-        DB::update("UPDATE periodos SET ano = :ano, dt_inicio = :dt_inicio, dt_fim = :dt_fim WHERE id = :id", $data);
+        if(!empty($data['ano']) && !empty($data['dt_inicio']) && !empty($data['dt_fim'])){
 
+            DB::update("UPDATE periodos SET ano = :ano, dt_inicio = :dt_inicio, dt_fim = :dt_fim WHERE id = :id", $data);
+
+        }
+        
         //return redirect('/periodos');
     }
 
