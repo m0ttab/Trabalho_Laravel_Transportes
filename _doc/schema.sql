@@ -46,7 +46,7 @@ create table respostas (
     uf varchar(200) not null,
     transporte varchar(200) not null,
     poder_publico_responsavel varchar(200) not null,
-    diferenca_paga int,
+    diferenca_paga varchar(100),
 
     primary key(id),
     foreign key(periodo_id) references periodos(id),
