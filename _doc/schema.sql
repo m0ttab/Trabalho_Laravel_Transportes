@@ -1,7 +1,10 @@
 create database transportes;
 
 use transportes;
- 
+
+drop table if exists respostas;
+drop table if exists periodos;
+drop table if exists turmas;
 drop table if exists cursos;
  
 create table cursos (
@@ -11,8 +14,6 @@ create table cursos (
 
     primary key(id)
 );
-
-drop table if exists periodos;
  
 create table periodos (
     id int not null auto_increment,
@@ -22,8 +23,6 @@ create table periodos (
 
     primary key(id)
 );
-
-drop table if exists turmas;
  
 create table turmas (
     id int not null auto_increment,
@@ -33,8 +32,6 @@ create table turmas (
     primary key(id),
     foreign key(curso_id) references cursos(id)
 );
-
-drop table if exists respostas;
 
 create table respostas (
     
