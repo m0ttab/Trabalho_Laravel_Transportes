@@ -61,6 +61,6 @@ class CursosController extends Controller
     function destroy($id){
         DB::delete("DELETE FROM cursos WHERE id = ?", [$id]);
 
-        return redirect('/cursos');
+        //return redirect('/cursos');
     }
 }

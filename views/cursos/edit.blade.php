@@ -15,7 +15,9 @@
         <label>Nome Reduzido:</label>
         <input class="form-control" type='text' name='nome_reduzido' value="{{ $curso->nome_reduzido }}" placeholder="Digite o nome reduzido"/>
     </div>
-    <button class="btn btn-primary" type='submit'>Alterar</button>
+    <button class="btn btn-warning" type='submit'>Alterar</button>
+    <button class="btn btn-danger" type='reset'>Cancelar</button>
+    <a class="btn btn-primary" href="/cursos">Voltar</a>
 </form>
 <script>
 
@@ -35,7 +37,6 @@
         if(req.status == 200){
 
             alert('Formulário enviado!');
-            document.getElementById('form').reset();
 
         }else{
 

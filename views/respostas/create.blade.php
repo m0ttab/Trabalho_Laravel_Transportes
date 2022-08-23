@@ -239,6 +239,7 @@
 
               alert('Formulário enviado!');
               document.getElementById('form').reset();
+              document.getElementById('dif').display = 'none';
 
           }else{
 

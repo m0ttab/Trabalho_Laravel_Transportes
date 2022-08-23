@@ -59,7 +59,6 @@
         if(req.status == 200){
 
             alert('Formulário enviado!');
-            document.getElementById('form').reset();
 
         }else{
 

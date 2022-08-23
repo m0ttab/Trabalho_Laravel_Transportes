@@ -58,6 +58,6 @@ class TurmasController extends Controller
     function destroy($id){
         DB::delete("DELETE FROM turmas WHERE id = ?", [$id]);
 
-        return redirect('/turmas');
+        //return redirect('/turmas');
     }
 }

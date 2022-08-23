@@ -18,12 +18,12 @@
         </thead>
         <tbody>
         @foreach($cursos as $curso)
-            <tr>
+            <tr id="curs{{$curso->id}}">
                 <td>{{$curso->id}}</td>
                 <td>{{$curso->nome}}</td>
                 <td>{{$curso->nome_reduzido}}</td>
                 <td><a class="btn btn-warning" href="/cursos/{{$curso->id}}/edit">Editar</a></td>
-                <td><a class="btn btn-danger" href="/cursos/{{$curso->id}}/destroy">Remover</a></td>
+                <td><a class="btn btn-danger" onclick="apagar({{$curso->id}})">Remover</a></td>
             </tr>
             
         @endforeach
@@ -31,5 +31,27 @@
     </table>
     @endif
     <a class="btn btn-primary" href="/cursos/create">Novo curso</a>
+    <script>
+
+        function apagar(id){
+
+            fetch('/cursos/'+ id +'/destroy').then((req) => {
+                
+                if(req.status == 200){
+
+                    alert('Excluído com sucesso!');
+                    document.getElementById('curs'+id).remove();
+
+                }else{
+
+                    alert('Erro ao excluir!');
+
+                }
+                
+            });
+
+        }
+
+    </script>
 
 @endsection

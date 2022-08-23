@@ -19,13 +19,14 @@
         </thead>
         <tbody>
         @foreach($periodos as $periodo)
-            <tr>
+        
+            <tr id="per{{$periodo->id}}">
                 <td>{{$periodo->id}}</td>
                 <td>{{$periodo->ano}}</td>
                 <td>{{date('d/m/Y', strtotime($periodo->dt_inicio))}}</td>
                 <td>{{date('d/m/Y', strtotime($periodo->dt_fim))}}</td>
                 <td><a class="btn btn-warning" href="/periodos/{{$periodo->id}}/edit">Editar</a></td>
-                <td><a class="btn btn-danger" href="/periodos/{{$periodo->id}}/destroy">Remover</a></td>
+                <td><a class="btn btn-danger" onclick="apagar({{$periodo->id}})">Remover</a></td>
             </tr>
             
         @endforeach
@@ -33,5 +34,27 @@
     </table>
     @endif
     <a class="btn btn-primary" href="/periodos/create">Novo Período</a>
+    <script>
+
+        function apagar(id){
+
+            fetch('/periodos/'+ id +'/destroy').then((req) => {
+                
+                if(req.status == 200){
+
+                    alert('Excluído com sucesso!');
+                    document.getElementById('per'+id).remove();
+
+                }else{
+
+                    alert('Erro ao excluir!');
+
+                }
+                
+            });
+
+        }
+
+    </script>
 
 @endsection

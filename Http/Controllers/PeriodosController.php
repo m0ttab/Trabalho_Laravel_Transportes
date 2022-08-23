@@ -58,6 +58,6 @@ class PeriodosController extends Controller
     function destroy($id){
         DB::delete("DELETE FROM periodos WHERE id = ?", [$id]);
 
-        return redirect('/periodos');
+        //return redirect('/periodos');
     }
 }

@@ -4,7 +4,7 @@
 
 <h1>Alterar Período</h1>
 
-<form action='/periodos/update' method='post'>
+<form id="form">
     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
     <input type="hidden" value="{{ $periodo->id }}" name="id"/>
     <div class="form-group">
@@ -41,7 +41,6 @@
         if(req.status == 200){
 
             alert('Formulário enviado!');
-            document.getElementById('form').reset();
 
         }else{
 
